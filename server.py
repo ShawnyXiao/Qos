@@ -5,6 +5,12 @@ from jsonrpc import JSONRPCResponseManager, dispatcher
 
 import time
 import socket
+import random
+
+
+def heavy_operation():
+    time.sleep(random.uniform(0.4, 0.6))
+    return "Heavy operation is done!"
 
 
 @Request.application
@@ -13,6 +19,7 @@ def application(request):
     dispatcher["time"] = lambda : time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     dispatcher["echo"] = lambda s: s
     dispatcher["add"] = lambda a, b: a + b
+    dispatcher["heavy"] = heavy_operation
 
     response = JSONRPCResponseManager.handle(request.data, dispatcher)
     return Response(response.json, mimetype='application/json')

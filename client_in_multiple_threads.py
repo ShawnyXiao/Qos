@@ -69,6 +69,10 @@ def main():
             "params": [520, 1314],
             "jsonrpc": "2.0",
             "id": 0
+        }, {
+            "method": "heavy",
+            "jsonrpc": "2.0",
+            "id": 0
         }
     ]
 
